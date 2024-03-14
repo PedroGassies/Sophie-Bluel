@@ -56,7 +56,7 @@ btnProjets.addEventListener("click",function(){
 
 btnObjets.addEventListener("click", function () {
     const projetFiltrees = works.filter(function (projet) {
-        return projet.categoryId = 1;
+        return projet.categoryId == 1;
     });
     document.querySelector(".gallery").innerHTML = "";
     genererProjets(projetFiltrees);
@@ -64,14 +64,14 @@ btnObjets.addEventListener("click", function () {
 
 btnAppartements.addEventListener("click",function(){
     const projetsFiltrees = works.filter(function(projet){
-        return projet.categoryId=2;
+        return projet.categoryId==2;
     });
     document.querySelector(".gallery").innerHTML="";
     genererProjets(projetsFiltrees);
 });
 btnHotels.addEventListener("click",function(){
     const projetsFiltrees = works.filter(function(projet){
-        return projet.categoryId = 3;
+        return projet.categoryId == 3;
     });
     document.querySelector(".gallery").innerHTML="";
     genererProjets(projetsFiltrees);
