@@ -125,6 +125,30 @@ li:hover {
 	text-align: center;
 	margin-bottom: 1em;
 }
+/******************** Buttons style ***************/
+.filtres{
+	text-align: center;
+	margin-bottom: 2em;
+}
+.filtres button{
+	border-width: 1px;
+	height:35px;	
+	margin:3px;
+	font-size:16px;
+}
+.btnObjects, .btnAppartments, .btnHostels{
+	color: #1D6154;
+    background-color:white ;
+}
+.btnObjects, .btnProjects{
+	width:8%;
+}
+.btnAppartments{
+	width:14%;
+}
+.btnHostels{
+	width:18%;
+}
 .gallery {
 	width: 100%;
 	display: grid;
@@ -169,7 +193,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"],button{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
