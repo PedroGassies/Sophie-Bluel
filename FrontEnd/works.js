@@ -28,24 +28,10 @@ function genererProjets(works){
 genererProjets(works);
 
 //Creation des boutons pour filtrer les projets
-const btnProjets=document.createElement("button");
-const btnObjets= document.createElement("button");
-const btnAppartements=document.createElement("button");
-const btnHotels=document.createElement("button");
-
-
-btnProjets.textContent="Tous";
-btnObjets.textContent="Objets";
-btnAppartements.textContent="Appartements";
-btnHotels.textContent="Hotels & restaurants";
-
-//Affilier boutons a la classe filtres
-const btnFiltres= document.querySelector(".filtres");
-
-btnFiltres.appendChild(btnProjets);
-btnFiltres.appendChild(btnObjets);
-btnFiltres.appendChild(btnAppartements);
-btnFiltres.appendChild(btnHotels);
+const btnProjets=document.querySelector(".btnProjects");
+const btnObjets= document.querySelector(".btnObjects");
+const btnAppartements=document.querySelector(".btnAppartments");
+const btnHotels=document.querySelector(".btnHostels");
 
 
 
@@ -56,22 +42,22 @@ btnProjets.addEventListener("click",function(){
 
 btnObjets.addEventListener("click", function () {
     const projetFiltrees = works.filter(function (projet) {
-        return projet.categoryId = 1;
+        return projet.categoryId == 1;
     });
     document.querySelector(".gallery").innerHTML = "";
     genererProjets(projetFiltrees);
 });
 
-btnAppartements.addEventListener("click",function(){
+btnAppartements.addEventListener("click", function (){
     const projetsFiltrees = works.filter(function(projet){
-        return projet.categoryId=2;
+        return projet.categoryId == 2;
     });
     document.querySelector(".gallery").innerHTML="";
     genererProjets(projetsFiltrees);
 });
 btnHotels.addEventListener("click",function(){
     const projetsFiltrees = works.filter(function(projet){
-        return projet.categoryId = 3;
+        return projet.categoryId == 3;
     });
     document.querySelector(".gallery").innerHTML="";
     genererProjets(projetsFiltrees);
