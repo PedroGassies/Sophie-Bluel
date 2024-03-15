@@ -50,7 +50,7 @@ btnObjets.addEventListener("click", function () {
 
 btnAppartements.addEventListener("click", function (){
     const projetsFiltrees = works.filter(function(projet){
-        return projet.categoryId == 2;
+        return projet.categoryId=2;
     });
     document.querySelector(".gallery").innerHTML="";
     genererProjets(projetsFiltrees);
