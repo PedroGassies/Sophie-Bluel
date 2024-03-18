@@ -2,9 +2,6 @@
 const reponse = await fetch('http://localhost:5678/api/works/');
 const works= await reponse.json();
 
-
-
-
 function genererProjets(works){
     for (let i = 0; i< works.length; i++){
         const figure = works[i];
@@ -50,7 +47,7 @@ btnObjets.addEventListener("click", function () {
 
 btnAppartements.addEventListener("click", function (){
     const projetsFiltrees = works.filter(function(projet){
-        return projet.categoryId=2;
+        return projet.categoryId == 2;
     });
     document.querySelector(".gallery").innerHTML="";
     genererProjets(projetsFiltrees);
@@ -62,4 +59,6 @@ btnHotels.addEventListener("click",function(){
     document.querySelector(".gallery").innerHTML="";
     genererProjets(projetsFiltrees);
 });
+
+
 
