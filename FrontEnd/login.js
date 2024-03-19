@@ -1,4 +1,18 @@
+let token = window.localStorage.getItem('token');
 
+
+if(token === null){
+    //Collect token from API
+const reponse = await fetch("http://localhost:8081/pieces");
+token= await reponse.json();
+
+ //Transforming token into JSON
+const valeurToken= JSON.stringify(token);
+ //Stocking in LocalStorage
+window.localStorage.setItem("token",valeurToken);
+}else{
+token = json.parse(token);
+}
 /****************** LOG IN  ************************/
 export function connect() {
     const formulaireLogIn = document.querySelector(".connect");
@@ -20,3 +34,4 @@ export function connect() {
     });
     
  };
+
