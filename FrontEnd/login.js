@@ -19,8 +19,8 @@ export function connect() {
 myHeaders.append("Content-Type", "application/json");
 
 const raw = JSON.stringify({
-  "email": "sophie.bluel@test.tld",
-  "password": "S0phie"
+  "email": "",/*Ce que met l'utilisateur*/
+  "password": "" /*Ce que met l'utilisateur*/
 });
 
 const requestOptions = {
