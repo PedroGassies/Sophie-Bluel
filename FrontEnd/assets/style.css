@@ -218,3 +218,8 @@ footer nav ul {
 	margin: 2em
 }
 
+
+#errorMessage{
+	visibility: hidden;
+	margin-top:20px;
+}
