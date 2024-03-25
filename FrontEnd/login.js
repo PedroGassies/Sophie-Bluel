@@ -1,22 +1,11 @@
-/*let token = window.localStorage.getItem('token');
-if(token === null){
-    //Collect token from API
-const reponse = await fetch("http://localhost:5678/api/users/login");
-token= await reponse.json();
 
- //Transforming token into JSON
-const valeurToken= JSON.stringify(token);
- //Stocking in LocalStorage
-window.localStorage.setItem("token",valeurToken);
-}else{
-token = json.parse(token);
-}
 /****************** LOG IN  ************************/
-export function connect() {
+function connect() {
+  errorMessage.style.visibility="hidden";
     const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
 const email=document.querySelector("#email");
-const password=document.Queryselector("#password");
+const password=document.querySelector("#password");
 const raw = JSON.stringify({
   "email": email,
   "password": password 
@@ -32,6 +21,26 @@ const requestOptions = {
 fetch("http://localhost:5678/api/users/login/", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
-  .catch((error) => console.error(error));
+  .catch(error=>{
+    console.log(error);
+    let errorMessage = document.getElementById('errorMessage');
+  errorMessage.style.visibility="visible";
+  errorMessage.style.color = 'red'; 
+
+  });
+
+  const token = window.localStorage.getItem('token');
+if(token){
+  window.location.href='index.html';
+}
+console.log("test");
  };
+
+
+
+const btnConnect=document.querySelector(".connect");
+btnConnect.addEventListener("submit",function(e){
+  e.preventDefault();
+  connect();
+})
 
