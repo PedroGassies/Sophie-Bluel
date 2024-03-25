@@ -1,11 +1,10 @@
-
-/****************** LOG IN  ************************/
+/** LOG IN  **/
 function connect() {
   errorMessage.style.visibility="hidden";
     const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
-const email=document.querySelector("#email");
-const password=document.querySelector("#password");
+const email=document.querySelector("#email").value;
+const password=document.querySelector("#password").value;
 const raw = JSON.stringify({
   "email": email,
   "password": password 
@@ -19,8 +18,18 @@ const requestOptions = {
 };
 
 fetch("http://localhost:5678/api/users/login/", requestOptions)
-  .then((response) => response.text())
-  .then((result) => console.log(result))
+  .then((response) => response.json())
+  .then((result) => {console.log(result.token)
+  if(result.token){
+    const token = window.localStorage.setItem('token',result.token);
+    ifToken()
+  }
+else{
+  let errorMessage = document.getElementById('errorMessage');
+  errorMessage.innerHTML=result.message;
+  errorMessage.style.visibility="visible";
+  errorMessage.style.color = 'red'; 
+}})
   .catch(error=>{
     console.log(error);
     let errorMessage = document.getElementById('errorMessage');
@@ -28,11 +37,6 @@ fetch("http://localhost:5678/api/users/login/", requestOptions)
   errorMessage.style.color = 'red'; 
 
   });
-
-  const token = window.localStorage.getItem('token');
-if(token){
-  window.location.href='index.html';
-}
 console.log("test");
  };
 
@@ -44,3 +48,8 @@ btnConnect.addEventListener("submit",function(e){
   connect();
 })
 
+function ifToken(){
+  if(localStorage.getItem('token')){
+    window.location.href='index.html';
+  }
+}
