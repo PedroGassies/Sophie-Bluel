@@ -1,9 +1,7 @@
-let token = window.localStorage.getItem('token');
-
-
+/*let token = window.localStorage.getItem('token');
 if(token === null){
     //Collect token from API
-const reponse = await fetch("http://localhost:5678/api/users/login/");
+const reponse = await fetch("http://localhost:5678/api/users/login");
 token= await reponse.json();
 
  //Transforming token into JSON
@@ -17,10 +15,11 @@ token = json.parse(token);
 export function connect() {
     const myHeaders = new Headers();
 myHeaders.append("Content-Type", "application/json");
-
+const email=document.querySelector("#email");
+const password=document.Queryselector("#password");
 const raw = JSON.stringify({
-  "email": "",/*Ce que met l'utilisateur*/
-  "password": "" /*Ce que met l'utilisateur*/
+  "email": email,
+  "password": password 
 });
 
 const requestOptions = {
@@ -30,7 +29,7 @@ const requestOptions = {
   redirect: "follow"
 };
 
-fetch("http://localhost:5678/api/users/login", requestOptions)
+fetch("http://localhost:5678/api/users/login/", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
