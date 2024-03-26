@@ -1,4 +1,6 @@
 /** LOG IN  **/
+
+
 function connect() {
   errorMessage.style.visibility="hidden";
     const myHeaders = new Headers();
@@ -22,7 +24,7 @@ fetch("http://localhost:5678/api/users/login/", requestOptions)
   .then((result) => {console.log(result.token)
   if(result.token){
     const token = window.localStorage.setItem('token',result.token);
-    ifToken()
+    window.location.href='index.html';
   }
 else{
   let errorMessage = document.getElementById('errorMessage');
@@ -42,14 +44,14 @@ console.log("test");
 
 
 
-const btnConnect=document.querySelector(".connect");
-btnConnect.addEventListener("submit",function(e){
-  e.preventDefault();
-  connect();
-})
-
-function ifToken(){
-  if(localStorage.getItem('token')){
-    window.location.href='index.html';
+ document.addEventListener(function() {
+  const btnConnect = document.getElementById('connect');
+  if (btnConnect) {
+      btnConnect.addEventListener("submit", function(e) {
+          e.preventDefault();
+          connect();
+      });
   }
-}
+});
+
+

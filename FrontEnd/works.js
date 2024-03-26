@@ -1,6 +1,17 @@
+import { ifToken } from "./auth.js";
+
 // Récupération des pièces depuis l'API
 const reponse = await fetch('http://localhost:5678/api/works/');
 const works= await reponse.json();
+
+
+
+//Creation des boutons pour filtrer les projets
+const btnProjets=document.querySelector(".btnProjects");
+const btnObjets= document.querySelector(".btnObjects");
+const btnAppartements=document.querySelector(".btnAppartments");
+const btnHotels=document.querySelector(".btnHostels");
+ifToken();
 
 function genererProjets(works){
     for (let i = 0; i< works.length; i++){
@@ -23,14 +34,6 @@ function genererProjets(works){
 }
 
 genererProjets(works);
-
-//Creation des boutons pour filtrer les projets
-const btnProjets=document.querySelector(".btnProjects");
-const btnObjets= document.querySelector(".btnObjects");
-const btnAppartements=document.querySelector(".btnAppartments");
-const btnHotels=document.querySelector(".btnHostels");
-
-
 
 btnProjets.addEventListener("click",function(){
     document.querySelector(".gallery").innerHTML="";
@@ -60,5 +63,13 @@ btnHotels.addEventListener("click",function(){
     genererProjets(projetsFiltrees);
 });
 
+
+  const logoutButton = document.getElementById('logout');
+    logoutButton.addEventListener('click', function(e) {
+      e.preventDefault();
+  // Supprimer le token du localStorage et rediriger vers la page de connexion
+      localStorage.removeItem('token');
+      window.location.href = 'login.html';
+    });
 
 
