@@ -1,4 +1,14 @@
 /** LOG IN  **/
+document.addEventListener('DOMContentLoaded',function() {
+  const btnConnect = document.getElementById('connect');
+  if (btnConnect) {
+      btnConnect.addEventListener("submit", function(e) {
+          e.preventDefault();
+          connect();
+      });
+  }
+});
+
 
 
 function connect() {
@@ -44,14 +54,4 @@ console.log("test");
 
 
 
- document.addEventListener(function() {
-  const btnConnect = document.getElementById('connect');
-  if (btnConnect) {
-      btnConnect.addEventListener("submit", function(e) {
-          e.preventDefault();
-          connect();
-      });
-  }
-});
-
-
+ 
