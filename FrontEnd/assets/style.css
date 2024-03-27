@@ -225,3 +225,58 @@ footer nav ul {
 }
 
 /************ MODALE ***********/
+
+*{box-sizing: border-box;}
+
+.modal{
+    position:fixed;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background:rgba(0,0,0,0.8)
+}
+
+.modal-wrapper{
+    overflow:auto;
+    width:50%;
+    padding:10px;
+    background-color:#fff;
+   
+}
+
+#titlemodal{
+	color: #000000;
+    font-size: 20px;
+	margin-top:15px
+}
+
+.js-modal-close{
+	display: flex;
+    margin: 0;
+    justify-content: end;
+    background: none;
+    border: none;
+    width: 100%;
+}
+
+#addPhoto{
+	display: flex;
+    justify-content: center;
+    border: none;
+    height: 35px;
+    width: 200px;
+}
+
+.trait {
+    border: 1px solid #B3B3B3;
+	width: 70%;
+}
+.currentPics{
+	display:flex;
+	justify-content: center;
+	margin:40px 0;
+}
