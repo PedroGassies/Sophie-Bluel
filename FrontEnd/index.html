@@ -9,9 +9,6 @@
 	<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Work+Sans&display=swap" rel="stylesheet">
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./assets/style.css">
-	<script type="module" src="works.js"></script>
-	<script type="module" src="auth.js"></script>
-	<script type="module" src="modale.js"></script>
 </head>
 <body>
 <header>
@@ -44,7 +41,19 @@
 	</section>
 	<section id="portfolio">
 		<h2>Mes Projets</h2>
-		<button class="change">Modifier <i class="fa-regular fa-pen-to-square"></i></button>
+		<a href="#modal1" class="js-modal">Modifier<i class="fa-regular fa-pen-to-square"></i></a>
+
+    <aside id="modal1" class="modal" aria-hidden="true" role="dialog" aria-labelledby="titlemodal" style="display:none">
+    <div class="modal-wrapper js-modal-stop">
+        <button class="js-modal-close"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M17.6546 8.05106C18.1235 7.58214 18.1235 6.82061 17.6546 6.35169C17.1856 5.88277 16.4241 5.88277 15.9552 6.35169L12.005 10.3056L8.05106 6.35544C7.58214 5.88652 6.82061 5.88652 6.35169 6.35544C5.88277 6.82436 5.88277 7.58589 6.35169 8.05481L10.3056 12.005L6.35544 15.9589C5.88652 16.4279 5.88652 17.1894 6.35544 17.6583C6.82436 18.1272 7.58589 18.1272 8.05481 17.6583L12.005 13.7044L15.9589 17.6546C16.4279 18.1235 17.1894 18.1235 17.6583 17.6546C18.1272 17.1856 18.1272 16.4241 17.6583 15.9552L13.7044 12.005L17.6546 8.05106Z" fill="black"/>
+			</svg></button>
+        <h2 id="titlemodal">Galerie Photo</h2>
+		<div class="currentPics"><div class="trait"></div></div>
+		<input type="submit" value="Ajouter une photo" id="addPhoto">
+</div>
+    </aside>
+    <script src="app.js"></script>
 		<div class="filtres">
 			<button class="btnProjects">Tous</button>
 			<button class="btnObjects">Objets</button>
@@ -75,5 +84,8 @@
 		</ul>
 	</nav>
 </footer>
+<script type="module" src="works.js"></script>
+<script type="module" src="auth.js"></script>
+<script type="module" src="app.js"></script>
 </body>
 </html>
