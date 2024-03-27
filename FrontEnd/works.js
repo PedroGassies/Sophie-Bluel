@@ -1,6 +1,6 @@
 import { ifToken } from "./auth.js";
 
-// Récupération des pièces depuis l'API
+// Récupération des projets depuis l'API
 const reponse = await fetch('http://localhost:5678/api/works/');
 const works= await reponse.json();
 
@@ -64,12 +64,4 @@ btnHotels.addEventListener("click",function(){
 });
 
 
-  const logoutButton = document.getElementById('logout');
-    logoutButton.addEventListener('click', function(e) {
-      e.preventDefault();
-  // Supprimer le token du localStorage et rediriger vers la page de connexion
-      localStorage.removeItem('token');
-      window.location.href = 'login.html';
-    });
-
-
+  

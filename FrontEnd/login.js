@@ -53,5 +53,14 @@ console.log("test");
  };
 
 
+ const logoutButton = document.getElementById('logout');
+ logoutButton.addEventListener('click', function(e) {
+   e.preventDefault();
+// Supprimer le token du localStorage et rediriger vers la page de connexion
+   localStorage.removeItem('token');
+   window.location.href = 'login.html';
+ });
+
+
 
  
