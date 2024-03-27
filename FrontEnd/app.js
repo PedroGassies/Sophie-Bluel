@@ -1,3 +1,14 @@
+let images = [];
+async function fetchData() {
+    const reponse = await fetch('http://localhost:5678/api/works/');
+    images= await reponse.json();
+    generatePics(images);
+}
+
+fetchData();
+
+
+
 let modal= null
 const openModal = function(e){
     e.preventDefault();
@@ -27,4 +38,41 @@ const stopPropagation = function(e){
 
 document.querySelectorAll('.js-modal').forEach(a => {
     a.addEventListener('click',openModal)
-})
+})      
+
+
+
+function generatePics(images){
+    for (let i = 0; i< images.length; i++){
+        const figure = images[i];
+        // Récupération de l'élément du DOM qui accueillera les projets
+        const sectionProjets = document.querySelector(".currentPics");
+        // Création d’une balise dédiée à un projet
+        const projet = document.createElement("figure");
+        // Création des balises 
+        const imageElement = document.createElement("img");
+        imageElement.src=figure.imageUrl;
+              //On rattache la balise article a la section Portfolio
+        sectionProjets.appendChild(projet);
+        projet.appendChild(imageElement);
+    }
+}
+
+
+
+const myHeaders = new Headers();
+myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxMTU1NDA0NCwiZXhwIjoxNzExNjQwNDQ0fQ.nTLhiQBkGzEqMzWbhEgHZnht-49k8ycr5BY4PM_kVl0");
+
+const raw = "";
+
+const requestOptions = {
+  method: "DELETE",
+  headers: myHeaders,
+  body: raw,
+  redirect: "follow"
+};
+
+fetch("http://localhost:5678/api/works/{id}", requestOptions)
+  .then((response) => response.text())
+  .then((result) => console.log(result))
+  .catch((error) => console.error(error));
