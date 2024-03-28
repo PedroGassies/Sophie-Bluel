@@ -271,12 +271,22 @@ footer nav ul {
     width: 200px;
 }
 
-.trait {
-    border: 1px solid #B3B3B3;
-	width: 70%;
-}
+
 .currentPics{
 	display:flex;
+	flex-wrap: wrap;
 	justify-content: center;
 	margin:40px 0;
+	width:70%;
+	border-bottom: 1px solid #B3B3B3;
+}
+
+.currentPics figure{
+	width:10%;	
+}
+.currentPics figure img {
+    max-width: 100%; /* Largeur maximale de l'image */
+    max-height: 100%; /* Hauteur maximale de l'image */
+    display: block; /* Assure que l'image conserve les proportions */
+    margin: auto; /* Centre l'image horizontalement */
 }
