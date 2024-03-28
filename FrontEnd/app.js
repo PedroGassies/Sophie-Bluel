@@ -43,16 +43,14 @@ document.querySelectorAll('.js-modal').forEach(a => {
 
 
 function generatePics(images){
+    const sectionProjets = document.querySelector(".currentPics");
+    sectionProjets.innerHTML = "";
     for (let i = 0; i< images.length; i++){
         const figure = images[i];
-        // Récupération de l'élément du DOM qui accueillera les projets
-        const sectionProjets = document.querySelector(".currentPics");
-        // Création d’une balise dédiée à un projet
+
         const projet = document.createElement("figure");
-        // Création des balises 
         const imageElement = document.createElement("img");
         imageElement.src=figure.imageUrl;
-              //On rattache la balise article a la section Portfolio
         sectionProjets.appendChild(projet);
         projet.appendChild(imageElement);
     }
