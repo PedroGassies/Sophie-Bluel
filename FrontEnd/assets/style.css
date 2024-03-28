@@ -242,16 +242,19 @@ footer nav ul {
 
 .modal-wrapper{
     overflow:auto;
-    width:50%;
+    width:40%;
     padding:10px;
     background-color:#fff;
+	border-radius: 10px;
    
 }
 
 #titlemodal{
 	color: #000000;
-    font-size: 20px;
-	margin-top:15px
+    font-size: 24px;
+	margin-top:15px;
+	font-family: 'Work';
+	font-weight: 300;
 }
 
 .js-modal-close{
@@ -275,18 +278,30 @@ footer nav ul {
 .currentPics{
 	display:flex;
 	flex-wrap: wrap;
-	justify-content: center;
-	margin:40px 0;
+	justify-content: space-between;
+	margin:auto;
 	width:70%;
-	border-bottom: 1px solid #B3B3B3;
 }
 
-.currentPics figure{
-	width:10%;	
+.currentPics figure{ 
+	width:18%;
+	margin:15px 0;	
 }
 .currentPics figure img {
-    max-width: 100%; /* Largeur maximale de l'image */
-    max-height: 100%; /* Hauteur maximale de l'image */
-    display: block; /* Assure que l'image conserve les proportions */
-    margin: auto; /* Centre l'image horizontalement */
+	max-height: 100%;
+    max-width: 100%;
+    display: block; 
+}
+
+.trait{
+	width:70%;
+	border-bottom: 1px solid #B3B3B3;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.center{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
 }
