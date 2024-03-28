@@ -57,7 +57,7 @@ function generatePics(images){
 }
 
 
-
+/*
 const myHeaders = new Headers();
 myHeaders.append("Authorization", "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjEsImlhdCI6MTcxMTU1NDA0NCwiZXhwIjoxNzExNjQwNDQ0fQ.nTLhiQBkGzEqMzWbhEgHZnht-49k8ycr5BY4PM_kVl0");
 
@@ -74,3 +74,12 @@ fetch("http://localhost:5678/api/works/{id}", requestOptions)
   .then((response) => response.text())
   .then((result) => console.log(result))
   .catch((error) => console.error(error));
+*/
+
+  const logoutButton = document.getElementById('log');
+logoutButton.addEventListener('click', function (e) {
+  e.preventDefault();
+  // Supprimer le token du localStorage et rediriger vers la page de connexion
+  localStorage.clear();
+  window.location.href = 'login.html';
+});
