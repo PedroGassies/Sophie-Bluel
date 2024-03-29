@@ -51,7 +51,6 @@ function connect() {
       errorMessage.style.color = 'red';
 
     });
-  console.log("test");
 };
 
 
