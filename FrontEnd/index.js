@@ -1,4 +1,17 @@
-import { ifToken } from "./auth.js";
+export function ifToken(){
+    if(localStorage.getItem('token')){
+      document.getElementById('headEdit').style.visibility = "visible";
+      document.querySelector('.js-modal').style.visibility = "visible";
+      document.querySelector('.index').style.margin='15px';
+      document.getElementById('log').innerHTML = '<a href="login.html" id="log">logout';
+    document.querySelector(".btnProjects").style.visibility = "hidden";
+    document.querySelector(".btnObjects").style.visibility = "hidden";
+    document.querySelector(".btnAppartments").style.visibility = "hidden";
+    document.querySelector(".btnHostels").style.visibility = "hidden";
+    
+  }
+}
+
 
 // Récupération des projets depuis l'API
 const reponse = await fetch('http://localhost:5678/api/works/');
@@ -169,3 +182,105 @@ logoutButton.addEventListener('click', function (e) {
   localStorage.clear();
   window.location.href = 'login.html';
 });
+
+
+
+
+
+
+// Écouteur d'événement sur le lien "modifier" dans la modal
+const addPhoto = document.getElementById("addPhoto");
+
+addPhoto.addEventListener("click",function(){
+    
+    // Supprimer le contenu existant de la modal
+    const modalContent = document.querySelector('.modal-wrapper');
+    modalContent.innerHTML = '';
+
+
+    // Creating buttons's div
+    modalContent.setAttribute('class','content');
+    const buttons = document.createElement('div');
+    buttons.setAttribute('class', 'buttons');
+    modalContent.appendChild(buttons);
+
+
+    // title h2
+    const title=document.createElement('h2');
+    title.setAttribute('class','titlemodal')
+    title.textContent='Ajout photo'
+    modalContent.appendChild(title);
+
+  
+    // Creer button 
+    const backButton=document.createElement('button');
+    backButton.setAttribute('class','return');
+    backButton.innerHTML=`<svg xmlns="http://www.w3.org/2000/svg" width="21" height="21" viewBox="0 0 21 21" fill="none">
+    <path d="M0.439478 8.94458C-0.146493 9.53055 -0.146493 10.4822 0.439478 11.0681L7.9399 18.5686C8.52587 19.1545 9.47748 19.1545 10.0635 18.5686C10.6494 17.9826 10.6494 17.031 10.0635 16.445L5.11786 11.5041H19.4999C20.3297 11.5041 21 10.8338 21 10.004C21 9.17428 20.3297 8.50393 19.4999 8.50393H5.12255L10.0588 3.56303C10.6447 2.97706 10.6447 2.02545 10.0588 1.43948C9.47279 0.853507 8.52118 0.853507 7.93521 1.43948L0.43479 8.9399L0.439478 8.94458Z" fill="black"/>
+    </svg>`;
+    buttons.appendChild(backButton);
+
+    // Créer le bouton pour fermer la modal
+    const closeButton = document.createElement('button');
+    closeButton.setAttribute('class', 'js-modal-close');
+    closeButton.innerHTML = `<svg width="21" height="21" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.6546 8.05106C18.1235 7.58214 18.1235 6.82061 17.6546 6.35169C17.1856 5.88277 16.4241 5.88277 15.9552 6.35169L12.005 10.3056L8.05106 6.35544C7.58214 5.88652 6.82061 5.88652 6.35169 6.35544C5.88277 6.82436 5.88277 7.58589 6.35169 8.05481L10.3056 12.005L6.35544 15.9589C5.88652 16.4279 5.88652 17.1894 6.35544 17.6583C6.82436 18.1272 7.58589 18.1272 8.05481 17.6583L12.005 13.7044L15.9589 17.6546C16.4279 18.1235 17.1894 18.1235 17.6583 17.6546C18.1272 17.1856 18.1272 16.4241 17.6583 15.9552L13.7044 12.005L17.6546 8.05106Z" fill="black"/>
+        </svg>`;
+    buttons.appendChild(closeButton);
+
+
+    // Créer le champ pour uploader une image
+    const imageInput = document.createElement('input');
+    imageInput.setAttribute('type', 'file');
+    imageInput.setAttribute('id', 'imageInput');
+    imageInput.setAttribute('name', 'imageInput');
+    modalContent.appendChild(imageInput);
+
+    // Créer le titre du projet
+    const titleLabel = document.createElement('label');
+    titleLabel.setAttribute('for', 'titleInput');
+    titleLabel.textContent = 'Titre';
+    modalContent.appendChild(titleLabel);
+
+    const titleInput = document.createElement('input');
+    titleInput.setAttribute('type', 'text');
+    titleInput.setAttribute('id', 'titleInput');
+    titleInput.setAttribute('name', 'titleInput');
+    modalContent.appendChild(titleInput);
+
+    // Créer le champ pour choisir une catégorie
+    const categoryLabel = document.createElement('label');
+    categoryLabel.setAttribute('for', 'categorySelect');
+    categoryLabel.textContent = 'Catégorie';
+    modalContent.appendChild(categoryLabel);
+
+    const categorySelect = document.createElement('select');
+    categorySelect.setAttribute('id', 'categorySelect');
+    categorySelect.setAttribute('name', 'categorySelect');
+    // Ajouter une option vide pour qu'aucune catégorie ne soit sélectionnée par défaut
+    const defaultOption = document.createElement('option');
+    defaultOption.setAttribute('value', '');
+    categorySelect.appendChild(defaultOption);
+    // Ajouter les options de catégorie
+    const categories = ['1', '2', '3'];
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category;
+        option.textContent = category;
+        categorySelect.appendChild(option);
+    });
+    modalContent.appendChild(categorySelect);
+
+    // Créer le bouton pour ajouter le projet
+    const addProject = document.createElement('input');
+    addProject.setAttribute('type','submit');
+    addProject.setAttribute('value','Valider');
+    addProject.setAttribute('id', 'addProject')
+    modalContent.appendChild(addProject);
+
+    // Écouteur d'événement sur le bouton "Ajouter le projet"
+    addProjectButton.addEventListener('click', function() {
+      
+    });
+});
+
