@@ -229,12 +229,18 @@ addPhoto.addEventListener("click",function(){
     buttons.appendChild(closeButton);
 
 
+    const fileButton = document.createElement('button');
+    fileButton.className = 'fileButton';
+    fileButton.innerText='+ Ajouter photo'
+
     // Créer le champ pour uploader une image
     const imageInput = document.createElement('input');
     imageInput.setAttribute('type', 'file');
     imageInput.setAttribute('id', 'imageInput');
     imageInput.setAttribute('name', 'imageInput');
-    modalContent.appendChild(imageInput);
+    imageInput.style.display = 'none';
+    fileButton.appendChild(imageInput);
+    modalContent.appendChild(fileButton);
 
     // Créer le titre du projet
     const titleLabel = document.createElement('label');
