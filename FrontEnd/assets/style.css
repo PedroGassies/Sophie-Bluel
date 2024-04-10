@@ -285,11 +285,14 @@ footer nav ul {
 	justify-content: start;
 }
 #addPhoto,#addProject{
+	cursor: pointer;
 	display: flex;
     justify-content: center;
     border: none;
     height: 35px;
     width: 30%;
+	margin-bottom: 40px;
+	margin-top: 40px;
 }
 
 
@@ -341,26 +344,53 @@ footer nav ul {
   .buttons{
 	display:flex;
 	justify-content: space-between;
+	margin-top: 10px;
   }
 
   #categorySelect, #titleInput,#imageInput{
 	display: flex;
 	width:70%;
 	margin:auto;
-	margin-bottom:50px;
   }
-
+  #titleInput, #categorySelect{
+	margin-bottom: 20px;
+	margin-top: 10px;
+  }
   .content label {
 	margin-bottom: 10px;
 	margin-left:15%;
+	margin-top: 25px;
   }
 
   .fileButton{
+	cursor: pointer;
 	border:none;
-	background-color: #B3B3B3;
+	background-color: #CBD6DC;
 	color:#306685;
-	height:35px;
-	width: 25%;
+	height:40px;
+	width: 35%;
+	margin:auto;
+  }
+
+  .uploadFiles{
+	display: flex;
+	flex-direction: column;
+	margin:auto;
+	margin-bottom: 20px;
+	width: 70%;
+	background-color: #E8F1F6;
+  }
+  .uploadFiles p {
+	margin:10px auto;
+	font-size: 12px;
+  }
+  
+  .uploadFiles img{
+	width:30%;
+	margin: auto;
+  }
+  .logoPic{
+	margin: 10px auto;
   }
 /********* EDITOR **************/
 
