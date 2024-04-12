@@ -212,7 +212,7 @@ function disconnect() {
 
 
 /********************************** ADD PROJECTS  **************************************/
-function addProjects() {
+function buildModalAddProjects() {
 
     const addPhoto = document.getElementById("addPhoto");
 
@@ -341,7 +341,8 @@ function addProjects() {
         defaultOption.setAttribute('value', '');
         categorySelect.appendChild(defaultOption);
         // Ajouter les options de catégorie
-        const categories = ['1', '2', '3'];
+        // async methode
+        const categories = ['1', '2', '3'] /*methode await fetch*/
         categories.forEach(category => {
             const option = document.createElement('option');
             option.value = category;
@@ -360,7 +361,8 @@ function addProjects() {
         addProject.setAttribute('id', 'addProject')
         modalContent.appendChild(addProject);
 
-        addProject.addEventListener('click', function () {
+        addProject.addEventListener('click', function (e) {
+            e.preventDefault();
             const token = localStorage.getItem('token');
             if (token) {
                 const image = imageInput.files[0];
@@ -387,15 +389,20 @@ function addProjects() {
                         .then((response) => {
                             if (!response.ok) {
                                 throw new Error("Erreur lors de l'ajout du projet");
-                            } projet.style.display = "none";
+                            }
                         })
-                        .then((result) => console.log(result))
-                        .catch((error) => console.error(error));
+                        .then((result) => {
+                            projet.style.display = "none"
+                            // fetch projects
+                            updateUi()
+                            //Affichage dynamique
+                        })
+                        .catch((error) => {
+                            console.error(error)
+                        });
                 } else {
                     alert("Veuillez remplir tous les champs");
                 }
-            } else {
-                logout();
             }
         })
     });
@@ -411,4 +418,4 @@ closeModal();
 modalSettings();
 generatePics(images);
 disconnect();
-addProjects();
+buildModalAddProjects();
