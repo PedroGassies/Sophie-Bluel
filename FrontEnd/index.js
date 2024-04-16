@@ -1,4 +1,6 @@
-
+const modalContent = modalContentCreation();
+const buttons = buttonsDiv(modalContent);
+const uploadFiles = divUpload(modalContent);
 /******************** UPDATE USER INTERFACE *********************************/
 function updateUi() {
     if (localStorage.getItem('token')) {
@@ -109,7 +111,7 @@ const closeModal = function (e) {
     modal.removeAttribute('aria-modal');
     modal.removeEventListener('click', closeModal);
     modal.querySelector('.js-modal-close').removeEventListener('click', closeModal);
-    // modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
+    modal.querySelector('.js-modal-stop').removeEventListener('click', stopPropagation);
     modal = null;
 };
 
@@ -122,7 +124,7 @@ function modalSettings() {
         modal.setAttribute('aria-modal', 'true');
         modal.addEventListener('click', closeModal);
         modal.querySelector('.js-modal-close').addEventListener('click', closeModal);
-        //modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
+        modal.querySelector('.js-modal-stop').addEventListener('click', stopPropagation);
     };
 
     document.querySelectorAll('.js-modal').forEach(a => {
@@ -130,8 +132,8 @@ function modalSettings() {
     });
 }
 
-// Appel de la fonction modalSettings pour initialiser les événements modaux
-modalSettings();
+
+
 
 
 
@@ -220,9 +222,7 @@ function modalContentCreation() {
 }
 
 function cleanModal(modalContent) {
-    const addPhoto = document.createElement('input');
-    addPhoto.setAttribute('value', 'Ajouter une photo');
-    addPhoto.setAttribute('id', 'addPhoto')
+    const addPhoto = document.getElementById('addPhoto')
     addPhoto.addEventListener("click", function () {
         modalContent.innerHTML = "";
         modalContentCreation();
@@ -401,6 +401,9 @@ function addProjects(modalContent) {
     addProject.addEventListener('click', function (e) {
         e.preventDefault();
         const token = localStorage.getItem('token');
+        uploadFiles();
+        selectTitle();
+        selectCategory();
         if (token) {
             const image = imageInput.files[0];
             const title = titleInput.value;
@@ -444,9 +447,7 @@ function addProjects(modalContent) {
     })
 }
 
-const modalContent = modalContentCreation();
-const buttons = buttonsDiv(modalContent);
-const uploadFiles = divUpload(modalContent);
+
 
 APIProjects();
 generateFilters();
