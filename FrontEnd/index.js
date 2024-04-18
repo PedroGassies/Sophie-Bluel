@@ -444,10 +444,9 @@ function addProjects(modalContent) {
                             return response.json(); // Convertir la réponse en JSON
                         })
                         .then((result) => {
-                            const gallery = document.querySelector(".gallery");
-                            gallery.innerHTML = "";
-
-                            genererProjets(result);
+                            //appel de fonction pour reconnaitre projet?
+                            //querySelector projet
+                            //appendChildprojet
                         })
                         .catch((error) => {
                             console.error(error)
