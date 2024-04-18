@@ -73,7 +73,7 @@ function genererProjets(works) {
         imageElement.src = figure.imageUrl;
         const titreElement = document.createElement("figcapture");
         titreElement.innerText = figure.title;
-
+        projet.setAttribute('id',figure.projectId)
         //On rattache la balise article a la section Portfolio
         sectionProjets.appendChild(projet);
         projet.appendChild(imageElement);
@@ -161,10 +161,10 @@ function generatePics(images) {
         projet.appendChild(imageElement);
         projet.appendChild(deleteProject);
 
-        deleteProject.addEventListener('click', function () {
+        deleteProject.addEventListener('click', function (e) {
+            e.preventDefault();
             const token = localStorage.getItem('token');
-            if (token) {
-                async function requestDelete() {
+            if (token) {              
                     const projectId = figure.id;
                     const myHeaders = new Headers();
                     myHeaders.append("Authorization", "Bearer " + token);
@@ -177,7 +177,7 @@ function generatePics(images) {
                         body: raw,
                         redirect: "follow"
                     };
-                    await fetch(`http://localhost:5678/api/works/${projectId}`, requestOptions)
+                    fetch(`http://localhost:5678/api/works/${projectId}`, requestOptions)
                         .then((response) => {
                             if (!response.ok) {
                                 throw new Error('Erreur lors de la suppression du projet');
@@ -185,10 +185,13 @@ function generatePics(images) {
 
                             }
                         })
-                        .then((result) => console.log(result))
+                        .then((result) => {
+                            console.log(result);
+                            //queryselector projectId
+                            //remove du DOM 
+                        })
                         .catch((error) => console.error(error));
-                }
-                requestDelete();
+
             }
             else {
                 logout()
