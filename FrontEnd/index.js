@@ -473,38 +473,36 @@ function addProjects(modalContent) {
             const category = categorySelect.value;
 
             if (image && title && category) {
-                async function requestPost() {
-                    const myHeaders = new Headers();
-                    myHeaders.append("Authorization", "Bearer " + token);
 
-                    const formdata = new FormData();
-                    formdata.append("image", image);
-                    formdata.append("title", title);
-                    formdata.append("category", category);
+                const myHeaders = new Headers();
+                myHeaders.append("Authorization", "Bearer " + token);
 
-                    const requestOptions = {
-                        method: "POST",
-                        headers: myHeaders,
-                        body: formdata,
-                        redirect: "follow"
-                    };
+                const formdata = new FormData();
+                formdata.append("image", image);
+                formdata.append("title", title);
+                formdata.append("category", category);
 
-                    await fetch(`http://localhost:5678/api/works`, requestOptions)
-                        .then((response) => {
-                            if (!response.ok) {
-                                throw new Error("Erreur lors de l'ajout du projet");
-                            }
-                            return response.json(); // Convertir la réponse en JSON
-                        })
-                        .then((result) => {
-                            result = document.querySelector(projet)
-                            sectionProjets.appendChild(result)
-                        })
-                        .catch((error) => {
-                            //console.error(error)
-                        });
-                }
-                requestPost();
+                const requestOptions = {
+                    method: "POST",
+                    headers: myHeaders,
+                    body: formdata,
+                    redirect: "follow"
+                };
+
+                fetch(`http://localhost:5678/api/works`, requestOptions)
+                    .then((response) => {
+                        if (!response.ok) {
+                            throw new Error("Erreur lors de l'ajout du projet");
+                        }
+                        return response.json(); // Convertir la réponse en JSON
+                    })
+                    .then((result) => {
+                        result = document.querySelector(projet)
+                        sectionProjets.appendChild(result)
+                    })
+                    .catch((error) => {
+                        //console.error(error)
+                    });
             } else {
                 alert("Veuillez remplir tous les champs");
             }
