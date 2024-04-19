@@ -31,11 +31,27 @@ function generateFilters(works) {
     const btnAppartements = document.querySelector(".btnAppartments");
     const btnHotels = document.querySelector(".btnHostels");
     btnProjets.addEventListener("click", function () {
+        btnProjets.style.backgroundColor = ' #1D6154';
+        btnProjets.style.color = 'white'
+        btnObjets.style.backgroundColor = 'white ';
+        btnObjets.style.color = '#1D6154'
+        btnAppartements.style.backgroundColor = ' #white';
+        btnAppartements.style.color = '#1D6154'
+        btnHotels.style.backgroundColor = ' #white';
+        btnHotels.style.color = '#1D6154'
         document.querySelector(".gallery").innerHTML = "";
         genererProjets(works);
     });
 
     btnObjets.addEventListener("click", function () {
+        btnObjets.style.backgroundColor = ' #1D6154';
+        btnObjets.style.color = 'white'
+        btnProjets.style.backgroundColor = ' white';
+        btnProjets.style.color = '#1D6154'
+        btnAppartements.style.backgroundColor = 'white';
+        btnAppartements.style.color = '#1D6154'
+        btnHotels.style.backgroundColor = ' white';
+        btnHotels.style.color = '#1D6154'
         const projetFiltrees = works.filter(function (projet) {
             return projet.categoryId == 1;
         });
@@ -44,6 +60,14 @@ function generateFilters(works) {
     });
 
     btnAppartements.addEventListener("click", function () {
+        btnAppartements.style.backgroundColor = ' #1D6154';
+        btnAppartements.style.color = 'white'
+        btnObjets.style.backgroundColor = ' white';
+        btnObjets.style.color = '#1D6154'
+        btnProjets.style.backgroundColor = ' white';
+        btnProjets.style.color = '#1D6154'
+        btnHotels.style.backgroundColor = ' white';
+        btnHotels.style.color = '#1D6154'
         const projetsFiltrees = works.filter(function (projet) {
             return projet.categoryId == 2;
         });
@@ -51,6 +75,14 @@ function generateFilters(works) {
         genererProjets(projetsFiltrees);
     });
     btnHotels.addEventListener("click", function () {
+        btnHotels.style.backgroundColor = ' #1D6154';
+        btnHotels.style.color = 'white'
+        btnProjets.style.backgroundColor = ' white';
+        btnProjets.style.color = '#1D6154'
+        btnObjets.style.backgroundColor = 'white ';
+        btnObjets.style.color = '#1D6154'
+        btnAppartements.style.backgroundColor = ' white';
+        btnAppartements.style.color = '#1D6154'
         const projetsFiltrees = works.filter(function (projet) {
             return projet.categoryId == 3;
         });
@@ -73,7 +105,7 @@ function genererProjets(works) {
         imageElement.src = figure.imageUrl;
         const titreElement = document.createElement("figcapture");
         titreElement.innerText = figure.title;
-        projet.setAttribute('id',figure.projectId)
+        projet.setAttribute('id', figure.projectId)
         //On rattache la balise article a la section Portfolio
         sectionProjets.appendChild(projet);
         projet.appendChild(imageElement);
@@ -102,7 +134,7 @@ const stopPropagation = function (e) {
     e.stopPropagation();
 };
 
-const closeModal = function (e) {
+function closeModal(e) {
     if (modal === null) return;
     e.preventDefault();
     modal.style.display = "none";
@@ -140,7 +172,6 @@ function modalSettings() {
 /*************************** GENERATE IMAGES IN MODAL **************************/
 function generatePics(images) {
     const sectionProjets = document.querySelector(".currentPics")
-    //sectionProjets.innerHTML = "";
     for (let i = 0; i < images.length; i++) {
         const figure = images[i];
         const projet = document.createElement("figure");
@@ -164,37 +195,30 @@ function generatePics(images) {
         deleteProject.addEventListener('click', function (e) {
             e.preventDefault();
             const token = localStorage.getItem('token');
-            if (token) {              
-                    const projectId = figure.id;
-                    const myHeaders = new Headers();
-                    myHeaders.append("Authorization", "Bearer " + token);
+            if (token) {
+                const projectId = figure.id;
+                const myHeaders = new Headers();
+                myHeaders.append("Authorization", "Bearer " + token);
 
-                    const raw = "";
+                const raw = "";
 
-                    const requestOptions = {
-                        method: "DELETE",
-                        headers: myHeaders,
-                        body: raw,
-                        redirect: "follow"
-                    };
-                    fetch(`http://localhost:5678/api/works/${projectId}`, requestOptions)
-                        .then((response) => {
-                            if (!response.ok) {
-                                throw new Error('Erreur lors de la suppression du projet');
-                            } if (response.ok) {
+                const requestOptions = {
+                    method: "DELETE",
+                    headers: myHeaders,
+                    body: raw,
+                    redirect: "follow"
+                };
 
-                            }
-                        })
-                        .then((result) => {
-                            console.log(result);
-                            //queryselector projectId
-                            //remove du DOM 
-                        })
-                        .catch((error) => console.error(error));
-
+                fetch(`http://localhost:5678/api/works/${projectId}`, requestOptions)
+                    .then((response) => {
+                    })
+                    .then((result) => {
+                        APIProjects();
+                    })
+                    .catch((error) => console.error(error));
             }
             else {
-                logout()
+                disconnect()
             }
         })
 
@@ -226,21 +250,24 @@ function modalContentCreation() {
     return modalContent;
 }
 
-function cleanModal(modalContent) {
+function switchModal(modalContent) {
     const addPhoto = document.getElementById('addPhoto')
     addPhoto.addEventListener("click", function () {
-        modalContent.innerHTML = "";
-        const buttons = buttonsDiv(modalContent);
-        modalContentCreation();
-        backButton(buttons);
-        closeButton(buttons);
-        titleModal(modalContent);
-        const uploadFiles = divUpload(modalContent);
-        uploadingFiles(uploadFiles);
-        selectTitle(modalContent)
-        selectCategory(modalContent);
-        addProjects(modalContent);
+        cleanModal(modalContent);
     });
+};
+function cleanModal(modalContent) {
+    modalContent.innerHTML = '';
+    const buttons = buttonsDiv(modalContent);
+    modalContentCreation();
+    backButton(buttons);
+    closeButton(buttons);
+    titleModal(modalContent);
+    const uploadFiles = divUpload(modalContent);
+    uploadingFiles(uploadFiles);
+    selectTitle(modalContent)
+    selectCategory(modalContent);
+    addProjects(modalContent);
 };
 
 function titleModal(modalContent) {
@@ -267,13 +294,39 @@ function backButton(buttons) {
     <path d="M0.439478 8.94458C-0.146493 9.53055 -0.146493 10.4822 0.439478 11.0681L7.9399 18.5686C8.52587 19.1545 9.47748 19.1545 10.0635 18.5686C10.6494 17.9826 10.6494 17.031 10.0635 16.445L5.11786 11.5041H19.4999C20.3297 11.5041 21 10.8338 21 10.004C21 9.17428 20.3297 8.50393 19.4999 8.50393H5.12255L10.0588 3.56303C10.6447 2.97706 10.6447 2.02545 10.0588 1.43948C9.47279 0.853507 8.52118 0.853507 7.93521 1.43948L0.43479 8.9399L0.439478 8.94458Z" fill="black"/>
     </svg>`;
     buttons.appendChild(backButton);
-    return backButton;
     backButton.addEventListener('click', function () {
+        modalContent.innerHTML = '';
+        modalContentCreation();
+        closeButton(modalContent);
+        const title = document.createElement('h2');
+        title.setAttribute('class', 'titlemodal')
+        title.textContent = 'Ajout photo'
+        modalContent.appendChild(title);
+
+        const center = document.createElement('div');
+        center.setAttribute('class', 'center')
+        modalContent.appendChild(center);
+
+        const currentPics = document.createElement('div');
+        currentPics.setAttribute('class', 'currentPics')
+        center.appendChild(currentPics)
         generatePics(images);
-    });
 
+        const trait = document.createElement('div');
+        trait.setAttribute('class', 'trait');
+        center.appendChild(trait);
+
+        const addPhoto = document.createElement('input');
+        addPhoto.setAttribute('type', 'submit');
+        addPhoto.setAttribute('value', 'Ajouter une photo')
+        addPhoto.setAttribute('id', 'addPhoto');
+        modalContent.appendChild(addPhoto);
+        addPhoto.addEventListener("click", function () {
+            cleanModal(modalContent);
+        });
+
+    })
 }
-
 function closeButton(buttons) {
     // Créer le bouton pour fermer la modal
     const closeButton = document.createElement('button');
@@ -444,12 +497,11 @@ function addProjects(modalContent) {
                             return response.json(); // Convertir la réponse en JSON
                         })
                         .then((result) => {
-                            //appel de fonction pour reconnaitre projet?
-                            //querySelector projet
-                            //appendChildprojet
+                            result = document.querySelector(projet)
+                            sectionProjets.appendChild(result)
                         })
                         .catch((error) => {
-                            console.error(error)
+                            //console.error(error)
                         });
                 }
                 requestPost();
@@ -467,7 +519,7 @@ function addProjects(modalContent) {
 APIProjects();
 updateUi();
 fetchData();
-cleanModal(modalContent);
+switchModal(modalContent);
 closeModal();
 modalSettings();
 disconnect();
