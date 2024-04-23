@@ -499,6 +499,7 @@ function addProjects(modalContent) {
                     .then((result) => {
                         result = document.querySelector(projet)
                         sectionProjets.appendChild(result)
+                        APIProjects();
                     })
                     .catch((error) => {
                         //console.error(error)
