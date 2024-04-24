@@ -312,7 +312,7 @@ function backButton(buttons) {
         const currentPics = document.createElement('div');
         currentPics.setAttribute('class', 'currentPics')
         center.appendChild(currentPics)
-        generatePics(images);
+        fetchData();
 
         const trait = document.createElement('div');
         trait.setAttribute('class', 'trait');
@@ -373,6 +373,16 @@ function uploadingFiles(uploadFiles) {
     imageInput.style.display = 'none';
     imageInput.addEventListener('change', () => {
         const file = imageInput.files[0];
+        const allowedTypes = ['image/jpeg', 'image/jpg', 'image/png'];
+        const maxFileSize = 4 * 1024 * 1024;
+        if (!allowedTypes.includes(file.type)) {
+            alert("Le fichier doit être au format JPG ou PNG.");
+            return;
+        }
+        if (file.size > maxFileSize) {
+            alert("La taille du fichier dépasse 4 Mo.");
+            return;
+        }
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
