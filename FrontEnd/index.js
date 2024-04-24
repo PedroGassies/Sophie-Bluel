@@ -7,10 +7,10 @@ function updateUi() {
         document.querySelector('.js-modal').style.visibility = "visible";
         document.querySelector('.index').style.margin = '15px';
         document.getElementById('log').innerHTML = '<a href="login.html" id="log">logout';
-        document.querySelector(".btnProjects").style.visibility = "hidden";
-        document.querySelector(".btnObjects").style.visibility = "hidden";
-        document.querySelector(".btnAppartments").style.visibility = "hidden";
-        document.querySelector(".btnHostels").style.visibility = "hidden";
+        document.querySelector(".filtres").style.display = "none";
+    }
+    else {
+        document.querySelector(".filtres").style.visibility = "block";
     }
 }
 
@@ -30,7 +30,6 @@ async function generateFilters(works) {
     const reponse = await fetch('http://localhost:5678/api/categories/');
     const categories = await reponse.json();
     categories.unshift({ id: 0, name: 'Tous' });
-
     categories.forEach(category => {
         const btn = document.createElement('button');
         btn.className = 'btn-filter';
