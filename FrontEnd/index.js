@@ -25,24 +25,6 @@ async function APIProjects() {
 
 
 /*******************************   GENERER FILTRES  ******************************/
-/*
-    btnHotels.addEventListener("click", function () {
-        btnHotels.style.backgroundColor = ' #1D6154';
-        btnHotels.style.color = 'white'
-        btnProjets.style.backgroundColor = ' white';
-        btnProjets.style.color = '#1D6154'
-        btnObjets.style.backgroundColor = 'white ';
-        btnObjets.style.color = '#1D6154'
-        btnAppartements.style.backgroundColor = ' white';
-        btnAppartements.style.color = '#1D6154'
-        const projetsFiltrees = works.filter(function (projet) {
-            return projet.categoryId == 3;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        genererProjets(projetsFiltrees);
-    });
-}
-*/
 async function generateFilters(works) {
     const filters = document.querySelector('.filtres');
     const reponse = await fetch('http://localhost:5678/api/categories/');
