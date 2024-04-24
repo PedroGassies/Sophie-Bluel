@@ -499,9 +499,8 @@ function addProjects(modalContent) {
                         return response.json(); // Convertir la réponse en JSON
                     })
                     .then((result) => {
-                        result = document.querySelector(projet)
-                        sectionProjets.appendChild(result)
                         APIProjects();
+                        projet.add();
                     })
                     .catch((error) => {
                         //console.error(error)
