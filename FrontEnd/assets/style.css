@@ -55,8 +55,8 @@ body {
 }
 header {
 	display: flex;
-	justify-content: space-between;
-	margin: 50px 0
+	flex-direction:column;
+	margin-bottom: 50px;
 }
 section {
 	margin: 50px 0
@@ -84,30 +84,36 @@ h2{
 	font-size: 30px;
 	color: #1D6154
 }
-nav ul {
+nav ul{
 	display: flex;
 	align-items: center;
 	list-style-type: none;
 
 }
+a{
+	text-decoration: none;
+	color:black;
+}
+
 nav li {
 	padding: 0 10px;
 	font-size: 1.2em;
 }
 
-li:hover {
+li:hover,a:hover {
 	color: #B1663C;
 }
 #introduction {
 	display: flex;
 	align-items: center;
+	margin-bottom: 150px;
 }
 #introduction figure {
 	flex: 1
 }
 #introduction img {
 	display: block;
-	margin: auto;
+	margin-right: auto;
 	width: 80%;
 }
 
@@ -123,7 +129,31 @@ li:hover {
 }
 #portfolio h2 {
 	text-align: center;
-	margin-bottom: 1em;
+}
+/******************** Buttons style ***************/
+.filtres{
+	text-align: center;
+	margin: 4em 0;
+}
+.filtres button{
+	cursor: pointer;
+	border-width: 1px;
+	height:35px;	
+	margin:3px;
+	font-size:16px;
+}
+.btnObjects, .btnAppartments, .btnHostels{
+	color: #1D6154;
+    background-color:white ;
+}
+.btnObjects, .btnProjects{
+	width:8%;
+}
+.btnAppartments{
+	width:14%;
+}
+.btnHostels{
+	width:18%;
 }
 .gallery {
 	width: 100%;
@@ -137,31 +167,34 @@ li:hover {
 	width: 100%;
 
 }
-#contact {
-	width: 50%;
-margin: auto;
+#log{
+	font-weight: bold;
 }
-#contact > * {
+#contact , #login{
+	width: 50%;
+	margin: auto;
+}
+#contact > * , #login > *{
 	text-align: center;
 
 }
 #contact h2{
 	margin-bottom: 20px;
 }
-#contact form {
+#contact form, #login form {
 	text-align: left;
 	margin-top:30px;
 	display: flex;
 	flex-direction: column;
 }
 
-#contact input {
+#contact input, #login input, #categorySelect , #titleInput {
 	height: 50px;
 	font-size: 1.2em;
 	border: none;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
-#contact label {
+#contact label, #login label {
 	margin: 2em 0 1em 0;
 }
 #contact textarea {
@@ -169,7 +202,7 @@ margin: auto;
 	box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
 }
 
-input[type="submit"]{
+input[type="submit"],button{
 	font-family: 'Syne';
 	font-weight: 700;
 	color: white;
@@ -186,3 +219,217 @@ footer nav ul {
 	margin: 2em
 }
 
+
+#errorMessage{
+	visibility: hidden;
+	margin-top:20px;
+}
+
+.connection{
+	border: none;
+	height:40px;
+	width:200px
+}
+
+/************ MODALE ***********/
+
+*{box-sizing: border-box;}
+
+.modal{
+    position:fixed;
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100%;
+    background:rgba(0,0,0,0.8)
+}
+
+.modal-wrapper, .content{
+    overflow:auto;
+    width:40%;
+    padding:10px;
+    background-color:#fff;
+	border-radius: 10px;
+   
+}
+
+.content{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.titlemodal{
+	color: #000000;
+    font-size: 24px;
+	margin-top:15px;
+	font-family: 'Work', sans-serif;
+	font-weight: 300;
+	margin-bottom: 1em;
+	margin-left: 0;
+}
+
+.js-modal-close, .return{
+	display: flex;
+	justify-content: end;
+    margin: 0;
+    background: none;
+    border: none;
+    width: 100%;
+	cursor: pointer;
+}
+.return{
+	justify-content: start;
+}
+#addPhoto,#addProject{
+	cursor: pointer;
+	display: flex;
+    justify-content: center;
+    border: none;
+    height: 35px;
+    width: 30%;
+	margin-bottom: 40px;
+	margin-top: 40px;
+}
+
+
+.currentPics{
+	display:flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin:auto;
+	width:70%;
+}
+
+.currentPics figure{ 
+	width:18%;
+	margin:15px 0;	
+}
+.currentPics figure img {
+	max-height: 100%;
+    max-width: 100%;
+    display: block; 
+}
+
+.trait{
+	width:70%;
+	border-bottom: 1px solid #B3B3B3;
+	margin: auto;
+	margin-top: 50px;
+}
+
+.center{
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+
+.project-container {
+	position: relative;
+  }
+  
+  .delete-icon {
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	width: 20px; 
+	height: 20px; 
+	cursor: pointer; 
+  }
+
+  .buttons{
+	display:flex;
+	justify-content: space-between;
+	margin-top: 10px;
+  }
+
+  #categorySelect, #titleInput,#imageInput{
+	display: flex;
+	width:70%;
+	margin:auto;
+  }
+  #titleInput, #categorySelect{
+	margin-bottom: 20px;
+	margin-top: 10px;
+  }
+  .modal-wrapper label {
+	margin-bottom: 10px;
+	margin-left:15%;
+	margin-top: 25px;
+  }
+
+  .fileButton{
+	cursor: pointer;
+	border:none;
+	background-color: #CBD6DC;
+	color:#306685;
+	height:40px;
+	width: 35%;
+	margin:auto;
+  }
+
+  .uploadFiles{
+	display: flex;
+	flex-direction: column;
+	margin:auto;
+	margin-bottom: 20px;
+	width: 70%;
+	background-color: #E8F1F6;
+  }
+  .uploadFiles p {
+	margin:10px auto;
+	font-size: 12px;
+  }
+  
+  .uploadFiles img{
+	width:30%;
+	margin: auto;
+  }
+  .logoPic{
+	margin: 10px auto;
+  }
+/********* EDITOR **************/
+
+#headEdit{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height:50px;
+	background-color: #000000;
+	color:#fff;
+}
+
+.index{
+	display:flex;
+	justify-content: space-between;
+}
+
+.modify{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-left: 140px;
+}
+
+.js-modal{
+	display:flex;
+	margin-left:50px;
+}
+
+.js-modal p{
+	padding-top: 3px;
+	margin-left: 10px;
+}
+
+
+/********* ADJUSTMENTS *************/
+.indexLog{
+	display:flex;
+	justify-content: space-between;
+	margin-top: 50px;
+	
+}
