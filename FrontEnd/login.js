@@ -38,22 +38,21 @@ function connect() {
         window.location.href = 'index.html';
       }
       else {
-        let errorMessage = document.getElementById('errorMessage');
-        errorMessage.innerHTML = result.message;
-        errorMessage.style.visibility = "visible";
-        errorMessage.style.color = 'red';
+        notFound()
       }
     })
     .catch(error => {
       console.log(error);
-      let errorMessage = document.getElementById('errorMessage');
-      errorMessage.style.visibility = "visible";
-      errorMessage.style.color = 'red';
+      notFound()
 
     });
 };
 
-
+function notFound() {
+  let errorMessage = document.getElementById('errorMessage');
+  errorMessage.style.visibility = "visible";
+  errorMessage.style.color = 'red';
+};
 
 
 
