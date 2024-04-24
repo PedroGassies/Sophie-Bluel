@@ -94,10 +94,11 @@ function generateFilters(works) {
 
 /*********************************** GENERER PROJETS  ***************************************/
 function genererProjets(works) {
+    // Récupération de l'élément du DOM qui accueillera les projets
+    const sectionProjets = document.querySelector(".gallery");
+    sectionProjets.innerHTML = "";
     for (let i = 0; i < works.length; i++) {
         const figure = works[i];
-        // Récupération de l'élément du DOM qui accueillera les projets
-        const sectionProjets = document.querySelector(".gallery");
         // Création d’une balise dédiée à un projet
         const projet = document.createElement("figure");
         // Création des balises 
@@ -214,6 +215,7 @@ function generatePics(images) {
                     })
                     .then((result) => {
                         APIProjects();
+                        projet.remove();
                     })
                     .catch((error) => console.error(error));
             }
