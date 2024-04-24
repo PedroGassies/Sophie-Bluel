@@ -138,23 +138,13 @@ li:hover,a:hover {
 .filtres button{
 	cursor: pointer;
 	border-width: 1px;
-	height:35px;	
+	border-color: #1D6154;
+	height:35px;
+	width: 17%;	
 	margin:3px;
 	font-size:16px;
 }
-.btnObjects, .btnAppartments, .btnHostels{
-	color: #1D6154;
-    background-color:white ;
-}
-.btnObjects, .btnProjects{
-	width:8%;
-}
-.btnAppartments{
-	width:14%;
-}
-.btnHostels{
-	width:18%;
-}
+
 .gallery {
 	width: 100%;
 	display: grid;

@@ -25,55 +25,7 @@ async function APIProjects() {
 
 
 /*******************************   GENERER FILTRES  ******************************/
-function generateFilters(works) {
-    const btnProjets = document.querySelector(".btnProjects");
-    const btnObjets = document.querySelector(".btnObjects");
-    const btnAppartements = document.querySelector(".btnAppartments");
-    const btnHotels = document.querySelector(".btnHostels");
-    btnProjets.addEventListener("click", function () {
-        btnProjets.style.backgroundColor = ' #1D6154';
-        btnProjets.style.color = 'white'
-        btnObjets.style.backgroundColor = 'white ';
-        btnObjets.style.color = '#1D6154'
-        btnAppartements.style.backgroundColor = ' #white';
-        btnAppartements.style.color = '#1D6154'
-        btnHotels.style.backgroundColor = ' #white';
-        btnHotels.style.color = '#1D6154'
-        document.querySelector(".gallery").innerHTML = "";
-        genererProjets(works);
-    });
-
-    btnObjets.addEventListener("click", function () {
-        btnObjets.style.backgroundColor = ' #1D6154';
-        btnObjets.style.color = 'white'
-        btnProjets.style.backgroundColor = ' white';
-        btnProjets.style.color = '#1D6154'
-        btnAppartements.style.backgroundColor = 'white';
-        btnAppartements.style.color = '#1D6154'
-        btnHotels.style.backgroundColor = ' white';
-        btnHotels.style.color = '#1D6154'
-        const projetFiltrees = works.filter(function (projet) {
-            return projet.categoryId == 1;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        genererProjets(projetFiltrees);
-    });
-
-    btnAppartements.addEventListener("click", function () {
-        btnAppartements.style.backgroundColor = ' #1D6154';
-        btnAppartements.style.color = 'white'
-        btnObjets.style.backgroundColor = ' white';
-        btnObjets.style.color = '#1D6154'
-        btnProjets.style.backgroundColor = ' white';
-        btnProjets.style.color = '#1D6154'
-        btnHotels.style.backgroundColor = ' white';
-        btnHotels.style.color = '#1D6154'
-        const projetsFiltrees = works.filter(function (projet) {
-            return projet.categoryId == 2;
-        });
-        document.querySelector(".gallery").innerHTML = "";
-        genererProjets(projetsFiltrees);
-    });
+/*
     btnHotels.addEventListener("click", function () {
         btnHotels.style.backgroundColor = ' #1D6154';
         btnHotels.style.color = 'white'
@@ -90,6 +42,45 @@ function generateFilters(works) {
         genererProjets(projetsFiltrees);
     });
 }
+*/
+async function generateFilters(works) {
+    const filters = document.querySelector('.filtres');
+    const reponse = await fetch('http://localhost:5678/api/categories/');
+    const categories = await reponse.json();
+    categories.unshift({ id: 0, name: 'Tous' });
+
+    categories.forEach(category => {
+        const btn = document.createElement('button');
+        btn.className = 'btn-filter';
+        btn.value = category.id;
+        btn.textContent = category.name;
+        filters.appendChild(btn);
+
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.btn-filter').forEach(button => {
+                button.style.backgroundColor = 'white';
+                button.style.color = '#1D6154';
+            });
+
+            btn.style.backgroundColor = '#1D6154';
+            btn.style.color = ' white';
+            if (btn.value === '0') {
+                genererProjets(works)
+            } else {
+                const projetsFiltrees = works.filter(function (projet) {
+                    return projet.categoryId == btn.value;
+                });
+                genererProjets(projetsFiltrees);
+            }
+        });
+    });
+    const btnTous = document.querySelector('.btn-filter[value="0"]');
+    if (btnTous) {
+        btnTous.click();
+    }
+}
+
+
 
 
 /*********************************** GENERER PROJETS  ***************************************/
@@ -430,6 +421,17 @@ function selectTitle(modalContent) {
 
 }
 
+async function fetchCategories() {
+    const reponse = await fetch('http://localhost:5678/api/categories/');
+    const categories = await reponse.json();
+    categories.forEach(category => {
+        const option = document.createElement('option');
+        option.value = category.id;
+        option.textContent = category.name;
+        categorySelect.appendChild(option);
+    });
+}
+
 
 function selectCategory(modalContent) {
     // Créer le champ pour choisir une catégorie
@@ -448,16 +450,6 @@ function selectCategory(modalContent) {
     categorySelect.appendChild(defaultOption);
     // Ajouter les options de catégorie
     // async methode
-    async function fetchCategories() {
-        const reponse = await fetch('http://localhost:5678/api/categories/');
-        const categories = await reponse.json();
-        categories.forEach(category => {
-            const option = document.createElement('option');
-            option.value = category.id;
-            option.textContent = category.name;
-            categorySelect.appendChild(option);
-        });
-    }
     fetchCategories();
     modalContent.appendChild(categorySelect);
 
