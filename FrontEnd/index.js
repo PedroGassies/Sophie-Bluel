@@ -53,7 +53,7 @@ function generateFilters(works) {
         btnHotels.style.backgroundColor = ' white';
         btnHotels.style.color = '#1D6154'
         const projetFiltrees = works.filter(function (projet) {
-            return projet.categoryId == 1;
+            return projet.categoryId == 1; //appel fonction qui prend id en argument()
         });
         document.querySelector(".gallery").innerHTML = "";
         genererProjets(projetFiltrees);
@@ -94,10 +94,11 @@ function generateFilters(works) {
 
 /*********************************** GENERER PROJETS  ***************************************/
 function genererProjets(works) {
+    // Récupération de l'élément du DOM qui accueillera les projets
+    const sectionProjets = document.querySelector(".gallery");
+    sectionProjets.innerHTML=""
     for (let i = 0; i < works.length; i++) {
         const figure = works[i];
-        // Récupération de l'élément du DOM qui accueillera les projets
-        const sectionProjets = document.querySelector(".gallery");
         // Création d’une balise dédiée à un projet
         const projet = document.createElement("figure");
         // Création des balises 
@@ -214,6 +215,7 @@ function generatePics(images) {
                     })
                     .then((result) => {
                         APIProjects();
+                        projet.remove();
                     })
                     .catch((error) => console.error(error));
             }
@@ -371,6 +373,7 @@ function uploadingFiles(uploadFiles) {
     imageInput.style.display = 'none';
     imageInput.addEventListener('change', () => {
         const file = imageInput.files[0];
+        //verifier dans la condition si le fichier est dans le bon format et moins de 4mo
         if (file) {
             const reader = new FileReader();
             reader.onload = function (e) {
@@ -391,6 +394,7 @@ function uploadingFiles(uploadFiles) {
 
 
     fileButton.addEventListener('click', () => {
+        
         imageInput.click();
     });
 
