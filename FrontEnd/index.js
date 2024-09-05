@@ -17,10 +17,16 @@ function updateUi() {
 
 // Récupération des projets depuis l'API
 async function APIProjects() {
-    const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/works/');
-    const works = await reponse.json();
-    genererProjets(works);
-    generateFilters(works);
+    try {
+        const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/works/');
+        const works = await reponse.json();
+        genererProjets(works);
+        generateFilters(works);
+    }
+    catch (e) {
+        console.error(e);
+    }
+
 }
 
 
