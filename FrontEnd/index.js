@@ -18,7 +18,7 @@ function updateUi() {
 // Récupération des projets depuis l'API
 async function APIProjects() {
     try {
-        const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/works/');
+        const reponse = await fetch('http://localhost:5678/api/works/');
         const works = await reponse.json();
         genererProjets(works);
         generateFilters(works);
@@ -127,7 +127,7 @@ function genererProjets(works) {
 /********************** FETCH DATA   *********************************/
 let images = [];
 async function fetchData() {
-    const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/works/');
+    const reponse = await fetch('http://localhost:5678/api/works/');
     images = await reponse.json();
     generatePics(images);
 }
@@ -216,7 +216,7 @@ function generatePics(images) {
                     redirect: "follow"
                 };
 
-                fetch(`https://sophie-bluel-lr47.vercel.app/api/works/${projectId}`, requestOptions)
+                fetch(`http://localhost:5678/api/works/${projectId}`, requestOptions)
                     .then((response) => {
                     })
                     .then((result) => {
@@ -447,7 +447,7 @@ function selectCategory(modalContent) {
     // Ajouter les options de catégorie
     // async methode
     async function fetchCategories() {
-        const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/categories/');
+        const reponse = await fetch('http://localhost:5678/api/categories/');
         const categories = await reponse.json();
         categories.forEach(category => {
             const option = document.createElement('option');
@@ -499,7 +499,7 @@ function addProjects(modalContent) {
                     redirect: "follow"
                 };
 
-                fetch(`https://sophie-bluel-lr47.vercel.app/api/works`, requestOptions)
+                fetch(`http://localhost:5678/api/works`, requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error("Erreur lors de l'ajout du projet");
