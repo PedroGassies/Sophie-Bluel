@@ -29,7 +29,7 @@ function connect() {
     redirect: "follow"
   };
 
-  fetch("http://localhost:5678/api/users/login/", requestOptions)
+  fetch("https://sophie-bluel-lr47.vercel.app/api/users/login/", requestOptions)
     .then((response) => response.json())
     .then((result) => {
       console.log(result.token)

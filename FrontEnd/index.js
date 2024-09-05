@@ -17,7 +17,7 @@ function updateUi() {
 
 // Récupération des projets depuis l'API
 async function APIProjects() {
-    const reponse = await fetch('http://localhost:5678/api/works/');
+    const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/works/');
     const works = await reponse.json();
     genererProjets(works);
     generateFilters(works);
@@ -96,7 +96,7 @@ function generateFilters(works) {
 function genererProjets(works) {
     // Récupération de l'élément du DOM qui accueillera les projets
     const sectionProjets = document.querySelector(".gallery");
-    sectionProjets.innerHTML=""
+    sectionProjets.innerHTML = ""
     for (let i = 0; i < works.length; i++) {
         const figure = works[i];
         // Création d’une balise dédiée à un projet
@@ -121,7 +121,7 @@ function genererProjets(works) {
 /********************** FETCH DATA   *********************************/
 let images = [];
 async function fetchData() {
-    const reponse = await fetch('http://localhost:5678/api/works/');
+    const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/works/');
     images = await reponse.json();
     generatePics(images);
 }
@@ -210,7 +210,7 @@ function generatePics(images) {
                     redirect: "follow"
                 };
 
-                fetch(`http://localhost:5678/api/works/${projectId}`, requestOptions)
+                fetch(`https://sophie-bluel-lr47.vercel.app/api/works/${projectId}`, requestOptions)
                     .then((response) => {
                     })
                     .then((result) => {
@@ -394,7 +394,7 @@ function uploadingFiles(uploadFiles) {
 
 
     fileButton.addEventListener('click', () => {
-        
+
         imageInput.click();
     });
 
@@ -441,7 +441,7 @@ function selectCategory(modalContent) {
     // Ajouter les options de catégorie
     // async methode
     async function fetchCategories() {
-        const reponse = await fetch('http://localhost:5678/api/categories/');
+        const reponse = await fetch('https://sophie-bluel-lr47.vercel.app/api/categories/');
         const categories = await reponse.json();
         categories.forEach(category => {
             const option = document.createElement('option');
@@ -493,7 +493,7 @@ function addProjects(modalContent) {
                     redirect: "follow"
                 };
 
-                fetch(`http://localhost:5678/api/works`, requestOptions)
+                fetch(`https://sophie-bluel-lr47.vercel.app/api/works`, requestOptions)
                     .then((response) => {
                         if (!response.ok) {
                             throw new Error("Erreur lors de l'ajout du projet");
